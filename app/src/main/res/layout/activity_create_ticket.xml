@@ -1,25 +1,91 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:fillViewport="true">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="vertical" android:padding="16dp">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="@string/new_ticket" android:textAppearance="?android:attr/textAppearanceLarge" />
-            <EditText android:id="@+id/titleInput" android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:hint="@string/ticket_title"
-                android:inputType="textCapSentences" />
-            <EditText android:id="@+id/descriptionInput" android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:hint="@string/description"
-                android:inputType="textMultiLine|textCapSentences" android:minLines="3" android:gravity="top" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:labelFor="@id/priorityInput" android:text="@string/priority" />
-            <Spinner android:id="@+id/priorityInput" android:layout_width="match_parent"
-                android:layout_height="48dp" android:spinnerMode="dropdown" />
-            <Button android:id="@+id/saveTicket" android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:text="@string/save_ticket" />
-            <TextView android:id="@+id/saveError" android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:accessibilityLiveRegion="polite" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                style="@style/HelpDesk.ScreenTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:text="@string/new_ticket" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <EditText
+                    android:id="@+id/titleInput"
+                    style="@style/HelpDesk.Input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:hint="@string/ticket_title"
+                    android:inputType="textCapSentences" />
+
+                <EditText
+                    android:id="@+id/descriptionInput"
+                    style="@style/HelpDesk.Input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    android:gravity="top"
+                    android:hint="@string/description"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:minLines="3" />
+
+                <TextView
+                    style="@style/HelpDesk.SectionLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:labelFor="@id/priorityInput"
+                    android:text="@string/priority" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:background="@drawable/bg_input"
+                    android:paddingHorizontal="6dp">
+
+                    <Spinner
+                        android:id="@+id/priorityInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:spinnerMode="dropdown" />
+                </FrameLayout>
+
+                <Button
+                    android:id="@+id/saveTicket"
+                    style="@style/HelpDesk.PrimaryButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save_ticket" />
+
+                <TextView
+                    android:id="@+id/saveError"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:accessibilityLiveRegion="polite"
+                    android:textColor="@color/error"
+                    android:textSize="13sp" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

@@ -1,14 +1,54 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ticketRow" android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:orientation="vertical" android:padding="12dp">
-    <TextView android:id="@+id/ticketTitle" android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" />
-    <TextView android:id="@+id/ticketDescription" android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView android:id="@+id/ticketPriority" android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView android:id="@+id/ticketStatus" android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button android:id="@+id/advanceStatus" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    android:id="@+id/ticketRow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/bg_card"
+    android:orientation="vertical"
+    android:padding="14dp">
+
+    <TextView
+        android:id="@+id/ticketTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:textColor="@color/text_primary"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/ticketDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:lineSpacingMultiplier="1.15"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/ticketPriority"
+            style="@style/HelpDesk.Badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/ticketStatus"
+            style="@style/HelpDesk.Badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/advanceStatus"
+        style="@style/HelpDesk.SecondaryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
 </LinearLayout>
