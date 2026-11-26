@@ -5,7 +5,6 @@ import fr.estiam.helpdesklite.model.Status
 import fr.estiam.helpdesklite.model.SupportTicket
 import fr.estiam.helpdesklite.model.TicketRules
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 
 class RoomTicketRepository(
@@ -14,20 +13,19 @@ class RoomTicketRepository(
 ) : TicketRepository {
     override suspend fun add(ticket: SupportTicket) = dao.insert(ticket.toRow())
 
-    override suspend fun findById(id: String): SupportTicket? {
-        // TODO Exercise 3: Retrieve and map a matching row.
-        return null
-    }
+    override suspend fun findById(id: String): SupportTicket? = dao.findById(id)?.toTicket()
 
     override suspend fun updateStatus(id: String, status: Status): Boolean {
-        // TODO Exercise 3: Use the supplied policy and DAO methods to persist a valid change.
-        return false
+        val current = dao.findById(id) ?: return false
+        if (!canTransition(current.status, status)) return false
+        return dao.updateStatus(id, current.status, status) > 0
     }
 
-    override fun observeAll() = dao.observeAll().map { rows -> rows.map(TicketRow::toTicket) }
+    override fun observeAll(): Flow<List<SupportTicket>> = dao.observeAll().toTickets()
 
-    override fun observeByStatus(status: Status): Flow<List<SupportTicket>> {
-        // TODO Exercise 3: Expose the matching rows as domain tickets.
-        return flowOf(emptyList())
-    }
+    override fun observeByStatus(status: Status): Flow<List<SupportTicket>> =
+        dao.observeByStatus(status).toTickets()
+
+    private fun Flow<List<TicketRow>>.toTickets(): Flow<List<SupportTicket>> =
+        map { rows -> rows.map(TicketRow::toTicket) }
 }
